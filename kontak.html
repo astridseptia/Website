@@ -555,6 +555,10 @@ section{
     font-weight:800;
 
     transition:.3s;
+
+    border:none;
+
+    cursor:pointer;
 }
 
 .btn-primary{
@@ -566,6 +570,12 @@ section{
     );
 
     color:white;
+}
+
+.btn-primary:disabled{
+    opacity:.7;
+    cursor:not-allowed;
+    transform:none !important;
 }
 
 .btn-outline{
@@ -1457,6 +1467,102 @@ section{
 }
 
 /* =====================================================
+   BUKU TAMU
+===================================================== */
+
+.guest-form input,
+.guest-form textarea{
+    width:100%;
+
+    padding:13px 16px;
+
+    margin-bottom:14px;
+
+    border-radius:11px;
+
+    border:1px solid var(--border);
+
+    background:var(--soft);
+
+    color:var(--text);
+
+    font-family:inherit;
+
+    font-size:14px;
+
+    resize:vertical;
+
+    transition:.3s;
+}
+
+.guest-form textarea{
+    min-height:100px;
+}
+
+.guest-form input:focus,
+.guest-form textarea:focus{
+    outline:none;
+
+    border-color:var(--primary);
+}
+
+.guest-list{
+    margin-top:26px;
+
+    max-height:430px;
+
+    overflow-y:auto;
+
+    padding-right:6px;
+}
+
+.guest-item{
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    background:var(--soft);
+
+    border:1px solid var(--border);
+
+    margin-bottom:12px;
+}
+
+.guest-item strong{
+    color:var(--primary);
+
+    font-size:14px;
+}
+
+.guest-item small{
+    display:block;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin:3px 0 8px;
+}
+
+.guest-item p{
+    color:var(--text);
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.guest-empty{
+    color:var(--muted);
+
+    font-size:13px;
+
+    text-align:center;
+
+    padding:20px 0;
+}
+
+/* =====================================================
    FOOTER
 ===================================================== */
 
@@ -1631,6 +1737,17 @@ body.dark .theme-btn{
     rgba(57,214,197,.35);
 
     color:var(--accent);
+}
+
+body.dark .guest-form input,
+body.dark .guest-form textarea,
+body.dark .guest-item{
+
+    background:var(--card);
+
+    border-color:var(--border);
+
+    color:var(--text);
 }
 
 /* =====================================================
@@ -2121,6 +2238,56 @@ allowfullscreen>
 
 </div>
 
+<!-- BUKU TAMU -->
+
+<div class="contact-card reveal" style="margin-top:24px;">
+
+<h3>
+
+<span class="contact-title-icon">
+
+<i class="fa-solid fa-comments"></i>
+
+</span>
+
+Buku Tamu
+
+</h3>
+
+<p style="color:var(--muted);margin-bottom:22px;line-height:1.8;">
+Tinggalkan pesan, saran, atau kesan Anda untuk
+Desa Semparuk. Pesan akan langsung tersimpan
+dan tampil di bawah ini.
+</p>
+
+<form class="guest-form" id="formBukuTamu">
+
+<input
+type="text"
+id="guestNama"
+placeholder="Nama Anda"
+maxlength="60"
+required>
+
+<textarea
+id="guestPesan"
+placeholder="Tulis pesan atau kesan Anda"
+maxlength="500"
+required></textarea>
+
+<button type="submit" class="btn btn-primary" style="width:100%;">
+<i class="fa-solid fa-paper-plane"></i>
+Kirim Pesan
+</button>
+
+</form>
+
+<div class="guest-list" id="daftarBukuTamu">
+<p class="guest-empty">Memuat pesan...</p>
+</div>
+
+</div>
+
 </div>
 
 </section>
@@ -2313,6 +2480,115 @@ window.addEventListener(
 
 revealOnScroll();
 
+/* =====================================================
+   BUKU TAMU (Google Apps Script + Google Sheets)
+===================================================== */
+
+const BUKU_TAMU_API =
+"https://script.google.com/macros/s/AKfycbx5kj_wPh0Vke9SVcKbyEy0xdsy1PjtfqhBkulhkfbEcrCSmB93WtM2iE4BscFYPEyT/exec";
+
+function escapeHTML(str){
+
+    return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;");
+
+}
+
+function muatBukuTamu(){
+
+    const container =
+    document.getElementById("daftarBukuTamu");
+
+    container.innerHTML =
+    '<p class="guest-empty">Memuat pesan...</p>';
+
+    fetch(BUKU_TAMU_API)
+    .then(res=>res.json())
+    .then(data=>{
+
+        if(!data || !data.length){
+
+            container.innerHTML =
+            '<p class="guest-empty">Belum ada pesan. Jadilah yang pertama menulis kesan!</p>';
+
+            return;
+
+        }
+
+        container.innerHTML =
+        data.map(item=>`
+            <div class="guest-item">
+                <strong>${escapeHTML(item.nama)}</strong>
+                <small>${escapeHTML(item.tanggal)}</small>
+                <p>${escapeHTML(item.pesan)}</p>
+            </div>
+        `).join("");
+
+    })
+    .catch(()=>{
+
+        container.innerHTML =
+        '<p class="guest-empty">Gagal memuat buku tamu. Silakan muat ulang halaman.</p>';
+
+    });
+
+}
+
+document
+.getElementById("formBukuTamu")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const nama =
+    document.getElementById("guestNama").value.trim();
+
+    const pesan =
+    document.getElementById("guestPesan").value.trim();
+
+    if(!nama || !pesan) return;
+
+    const btn =
+    this.querySelector("button[type=submit]");
+
+    const originalHTML =
+    btn.innerHTML;
+
+    btn.disabled = true;
+    btn.innerHTML =
+    '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+
+    fetch(BUKU_TAMU_API, {
+        method: "POST",
+        body: JSON.stringify({ nama, pesan })
+    })
+    .then(res=>res.json())
+    .then(()=>{
+
+        document
+        .getElementById("formBukuTamu")
+        .reset();
+
+        muatBukuTamu();
+
+    })
+    .catch(()=>{
+
+        alert("Gagal mengirim pesan. Silakan coba lagi.");
+
+    })
+    .finally(()=>{
+
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+
+    });
+
+});
+
+muatBukuTamu();
 
 </script>
 
