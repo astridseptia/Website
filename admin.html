@@ -1336,62 +1336,108 @@
         const refreshBtn = document.getElementById("refreshBtn");
 
         refreshBtn.disabled = true;
-
         refreshBtn.innerHTML = `
           <i class="fa-solid fa-spinner fa-spin"></i>
           Memuat...
         `;
 
-        const callbackName = "adminCallback_" + Date.now();
-
-        window[callbackName] = function (response) {
-          refreshBtn.disabled = false;
-
-          refreshBtn.innerHTML = `
+        requestJSONP(
+          { action: "semua" },
+          function (response) {
+            refreshBtn.disabled = false;
+            refreshBtn.innerHTML = `
               <i class="fa-solid fa-rotate"></i>
               Refresh Data
             `;
 
-          if (!response || !response.success) {
-            showToast(response?.message || "Gagal mengambil data.", true);
+            if (!response || !response.success) {
+              showToast(response?.message || "Gagal mengambil data.", true);
+              return;
+            }
 
-            cleanupJSONP(callbackName);
+            complaints = Array.isArray(response.data) ? response.data : [];
+            updateDashboard();
+            renderTable();
 
-            return;
+            document.getElementById("lastUpdate").textContent =
+              "Terakhir diperbarui: " + new Date().toLocaleString("id-ID");
+          },
+          function () {
+            refreshBtn.disabled = false;
+            refreshBtn.innerHTML = `
+              <i class="fa-solid fa-rotate"></i>
+              Refresh Data
+            `;
+            showToast(
+              "Google Apps Script sedang lambat. Coba refresh lagi beberapa saat.",
+              true,
+            );
+          },
+          3,
+        );
+      }
+
+      /* =====================================================
+         JSONP DENGAN TIMEOUT + RETRY
+      ===================================================== */
+
+      function requestJSONP(params, onSuccess, onError, maxRetries) {
+        maxRetries = maxRetries || 3;
+        let attempt = 0;
+
+        function run() {
+          attempt++;
+
+          const callbackName =
+            "adminJSONP_" +
+            Date.now() +
+            "_" +
+            Math.random().toString(36).substring(2, 8);
+
+          const script = document.createElement("script");
+          script.id = callbackName;
+          let finished = false;
+
+          function cleanup() {
+            clearTimeout(timeout);
+            if (script.parentNode) script.parentNode.removeChild(script);
+            delete window[callbackName];
           }
 
-          complaints = Array.isArray(response.data) ? response.data : [];
+          function fail() {
+            if (finished) return;
+            finished = true;
+            cleanup();
 
-          updateDashboard();
+            if (attempt < maxRetries) {
+              setTimeout(run, 700 * attempt);
+            } else {
+              onError(new Error("Google Apps Script tidak merespons."));
+            }
+          }
 
-          renderTable();
+          const timeout = setTimeout(fail, 8000);
 
-          document.getElementById("lastUpdate").textContent =
-            "Terakhir diperbarui: " + new Date().toLocaleString("id-ID");
+          window[callbackName] = function (response) {
+            if (finished) return;
+            finished = true;
+            cleanup();
+            onSuccess(response);
+          };
 
-          cleanupJSONP(callbackName);
-        };
+          const query = new URLSearchParams();
+          Object.keys(params).forEach(function (key) {
+            query.append(key, params[key]);
+          });
+          query.append("callback", callbackName);
+          query.append("_", Date.now());
 
-        const script = document.createElement("script");
+          script.src = API_URL + "?" + query.toString();
+          script.onerror = fail;
+          document.body.appendChild(script);
+        }
 
-        script.id = callbackName;
-
-        script.src = API_URL + "?action=semua" + "&callback=" + callbackName;
-
-        script.onerror = function () {
-          refreshBtn.disabled = false;
-
-          refreshBtn.innerHTML = `
-              <i class="fa-solid fa-rotate"></i>
-              Refresh Data
-            `;
-
-          showToast("Gagal terhubung ke Google Apps Script.", true);
-
-          cleanupJSONP(callbackName);
-        };
-
-        document.body.appendChild(script);
+        run();
       }
 
       /* =====================================================
