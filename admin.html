@@ -128,11 +128,7 @@
         width: 43px;
         height: 43px;
         border-radius: 12px;
-        background: linear-gradient(
-          135deg,
-          var(--secondary),
-          var(--primary)
-        );
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -302,11 +298,7 @@
         border: 0;
         border-radius: 12px;
         padding: 12px 17px;
-        background: linear-gradient(
-          135deg,
-          var(--primary),
-          var(--secondary)
-        );
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: white;
         font-size: 12px;
         font-weight: 700;
@@ -997,11 +989,7 @@
             <i class="fa-solid fa-moon"></i>
           </button>
 
-          <button
-            class="menu-btn"
-            onclick="toggleMenu()"
-            title="Menu"
-          >
+          <button class="menu-btn" onclick="toggleMenu()" title="Menu">
             <i class="fa-solid fa-bars"></i>
           </button>
         </div>
@@ -1019,9 +1007,7 @@
           <span>Pengaduan</span>
         </h1>
 
-        <p>
-          Kelola dan pantau laporan pengaduan warga Desa Semparuk Sutera.
-        </p>
+        <p>Kelola dan pantau laporan pengaduan warga Desa Semparuk Sutera.</p>
       </div>
     </section>
 
@@ -1031,7 +1017,6 @@
 
     <main class="main">
       <div class="container">
-
         <!-- TOP BAR -->
 
         <div class="top-bar">
@@ -1042,7 +1027,6 @@
           </div>
 
           <div class="admin-actions">
-
             <a
               href="index.html"
               class="admin-action website"
@@ -1070,7 +1054,6 @@
               <i class="fa-solid fa-rotate"></i>
               Refresh Data
             </button>
-
           </div>
         </div>
 
@@ -1079,7 +1062,6 @@
         ================================================= -->
 
         <div class="stats-grid">
-
           <div class="stat-card">
             <div class="stat-icon">
               <i class="fa-solid fa-inbox"></i>
@@ -1129,7 +1111,6 @@
 
             <p>Ditolak</p>
           </div>
-
         </div>
 
         <!-- =================================================
@@ -1137,11 +1118,9 @@
         ================================================= -->
 
         <div class="dashboard-grid">
-
           <!-- STATUS CHART -->
 
           <div class="card">
-
             <div class="card-header">
               <h2>Status Pengaduan</h2>
 
@@ -1149,97 +1128,71 @@
             </div>
 
             <div class="chart-wrapper">
-
               <div class="chart" id="statusChart">
-
                 <div class="chart-center">
-
                   <strong id="chartTotal">0</strong>
 
                   <span>Pengaduan</span>
-
                 </div>
-
               </div>
-
             </div>
 
             <div class="legend">
-
               <div class="legend-item">
-
                 <div class="legend-left">
                   <div class="legend-dot dot-baru"></div>
                   Baru
                 </div>
 
                 <strong id="legendBaru">0</strong>
-
               </div>
 
               <div class="legend-item">
-
                 <div class="legend-left">
                   <div class="legend-dot dot-diproses"></div>
                   Diproses
                 </div>
 
                 <strong id="legendDiproses">0</strong>
-
               </div>
 
               <div class="legend-item">
-
                 <div class="legend-left">
                   <div class="legend-dot dot-selesai"></div>
                   Selesai
                 </div>
 
                 <strong id="legendSelesai">0</strong>
-
               </div>
 
               <div class="legend-item">
-
                 <div class="legend-left">
                   <div class="legend-dot dot-ditolak"></div>
                   Ditolak
                 </div>
 
                 <strong id="legendDitolak">0</strong>
-
               </div>
-
             </div>
-
           </div>
 
           <!-- PENGADUAN TERBARU -->
 
           <div class="card">
-
             <div class="card-header">
-
               <h2>Pengaduan Terbaru</h2>
 
               <span>5 terakhir</span>
-
             </div>
 
             <div class="latest-list" id="latestList">
-
               <div class="loading">
-
                 <i class="fa-solid fa-spinner fa-spin"></i>
 
                 <div>Memuat data...</div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
 
         <!-- =================================================
@@ -1247,19 +1200,14 @@
         ================================================= -->
 
         <div class="card table-card">
-
           <div class="table-header">
-
             <div>
-
               <h2>Kelola Pengaduan Warga</h2>
 
               <p>Daftar seluruh laporan yang masuk.</p>
-
             </div>
 
             <div class="search-box">
-
               <i class="fa-solid fa-search"></i>
 
               <input
@@ -1268,30 +1216,17 @@
                 placeholder="Cari kode, nama, judul..."
                 oninput="renderTable()"
               />
-
             </div>
-
           </div>
 
-          <div
-            class="table-container"
-            id="tableContainer"
-          >
-
+          <div class="table-container" id="tableContainer">
             <div class="loading">
-
               <i class="fa-solid fa-spinner fa-spin"></i>
 
-              <div>
-                Mengambil data dari Google Sheets...
-              </div>
-
+              <div>Mengambil data dari Google Sheets...</div>
             </div>
-
           </div>
-
         </div>
-
       </div>
     </main>
 
@@ -1316,17 +1251,13 @@
     ===================================================== -->
 
     <script>
-
       /* =====================================================
          CEK LOGIN
       ===================================================== */
 
-      if (
-        sessionStorage.getItem("adminLoggedIn") !== "true"
-      ) {
+      if (sessionStorage.getItem("adminLoggedIn") !== "true") {
         window.location.href = "login.html";
       }
-
 
       /* =====================================================
          API
@@ -1335,117 +1266,74 @@
       const API_URL =
         "https://script.google.com/macros/s/AKfycbwliK35f6DEpMwB9lBITkdil3HwGJxXXm6fgBNoE8vRvKjiVy8ZqkjOMnaOl1fI9Xb2dQ/exec";
 
-
       /* =====================================================
          DATA
       ===================================================== */
 
       let complaints = [];
 
-
       /* =====================================================
          NAVBAR
       ===================================================== */
 
       function toggleMenu() {
-
-        document
-          .getElementById("navMenu")
-          ?.classList.toggle("show");
-
+        document.getElementById("navMenu")?.classList.toggle("show");
       }
-
 
       /* =====================================================
          DARK MODE
       ===================================================== */
 
       function toggleTheme() {
-
         document.body.classList.toggle("dark");
 
-        const icon =
-          document.querySelector("#themeBtn i");
+        const icon = document.querySelector("#themeBtn i");
 
-        if (
-          document.body.classList.contains("dark")
-        ) {
+        if (document.body.classList.contains("dark")) {
+          icon.className = "fa-solid fa-sun";
 
-          icon.className =
-            "fa-solid fa-sun";
-
-          localStorage.setItem(
-            "theme",
-            "dark"
-          );
-
+          localStorage.setItem("theme", "dark");
         } else {
+          icon.className = "fa-solid fa-moon";
 
-          icon.className =
-            "fa-solid fa-moon";
-
-          localStorage.setItem(
-            "theme",
-            "light"
-          );
-
+          localStorage.setItem("theme", "light");
         }
-
       }
-
 
       /* =====================================================
          LOAD THEME
       ===================================================== */
 
-      if (
-        localStorage.getItem("theme") === "dark"
-      ) {
-
+      if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark");
 
-        document.querySelector(
-          "#themeBtn i"
-        ).className =
-          "fa-solid fa-sun";
-
+        document.querySelector("#themeBtn i").className = "fa-solid fa-sun";
       }
-
 
       /* =====================================================
          LOGOUT ADMIN
       ===================================================== */
 
       function logoutAdmin() {
-
         const yakin = confirm(
-          "Apakah kamu yakin ingin logout dari panel admin?"
+          "Apakah kamu yakin ingin logout dari panel admin?",
         );
 
         if (!yakin) {
           return;
         }
 
-        sessionStorage.removeItem(
-          "adminLoggedIn"
-        );
+        sessionStorage.removeItem("adminLoggedIn");
 
-        window.location.href =
-          "login.html";
-
+        window.location.href = "login.html";
       }
-
 
       /* =====================================================
          LOAD DATA DARI APPS SCRIPT
       ===================================================== */
 
       function loadData() {
-
-        const refreshBtn =
-          document.getElementById(
-            "refreshBtn"
-          );
+        const refreshBtn = document.getElementById("refreshBtn");
 
         refreshBtn.disabled = true;
 
@@ -1454,286 +1342,139 @@
           Memuat...
         `;
 
+        const callbackName = "adminCallback_" + Date.now();
 
-        const callbackName =
-          "adminCallback_" +
-          Date.now();
+        window[callbackName] = function (response) {
+          refreshBtn.disabled = false;
 
-
-        window[callbackName] =
-          function (response) {
-
-            refreshBtn.disabled = false;
-
-            refreshBtn.innerHTML = `
+          refreshBtn.innerHTML = `
               <i class="fa-solid fa-rotate"></i>
               Refresh Data
             `;
 
+          if (!response || !response.success) {
+            showToast(response?.message || "Gagal mengambil data.", true);
 
-            if (
-              !response ||
-              !response.success
-            ) {
+            cleanupJSONP(callbackName);
 
-              showToast(
-                response?.message ||
-                  "Gagal mengambil data.",
-                true
-              );
+            return;
+          }
 
-              cleanupJSONP(
-                callbackName
-              );
+          complaints = Array.isArray(response.data) ? response.data : [];
 
-              return;
-            }
+          updateDashboard();
 
+          renderTable();
 
-            complaints =
-              Array.isArray(
-                response.data
-              )
-                ? response.data
-                : [];
+          document.getElementById("lastUpdate").textContent =
+            "Terakhir diperbarui: " + new Date().toLocaleString("id-ID");
 
+          cleanupJSONP(callbackName);
+        };
 
-            updateDashboard();
-
-            renderTable();
-
-
-            document.getElementById(
-              "lastUpdate"
-            ).textContent =
-              "Terakhir diperbarui: " +
-              new Date().toLocaleString(
-                "id-ID"
-              );
-
-
-            cleanupJSONP(
-              callbackName
-            );
-
-          };
-
-
-        const script =
-          document.createElement(
-            "script"
-          );
-
+        const script = document.createElement("script");
 
         script.id = callbackName;
 
+        script.src = API_URL + "?action=semua" + "&callback=" + callbackName;
 
-        script.src =
-          API_URL +
-          "?action=semua" +
-          "&callback=" +
-          callbackName;
+        script.onerror = function () {
+          refreshBtn.disabled = false;
 
-
-        script.onerror =
-          function () {
-
-            refreshBtn.disabled =
-              false;
-
-            refreshBtn.innerHTML = `
+          refreshBtn.innerHTML = `
               <i class="fa-solid fa-rotate"></i>
               Refresh Data
             `;
 
+          showToast("Gagal terhubung ke Google Apps Script.", true);
 
-            showToast(
-              "Gagal terhubung ke Google Apps Script.",
-              true
-            );
+          cleanupJSONP(callbackName);
+        };
 
-
-            cleanupJSONP(
-              callbackName
-            );
-
-          };
-
-
-        document.body.appendChild(
-          script
-        );
-
+        document.body.appendChild(script);
       }
-
 
       /* =====================================================
          UPDATE DASHBOARD
       ===================================================== */
 
       function updateDashboard() {
-
-        const total =
-          complaints.length;
-
+        const total = complaints.length;
 
         let baru = 0;
         let diproses = 0;
         let selesai = 0;
         let ditolak = 0;
 
+        complaints.forEach(function (item) {
+          const status = String(item.status || "baru")
+            .toLowerCase()
+            .trim();
 
-        complaints.forEach(
-          function (item) {
-
-            const status =
-              String(
-                item.status ||
-                  "baru"
-              )
-                .toLowerCase()
-                .trim();
-
-
-            if (status === "baru") {
-
-              baru++;
-
-            } else if (
-              status === "diproses"
-            ) {
-
-              diproses++;
-
-            } else if (
-              status === "selesai"
-            ) {
-
-              selesai++;
-
-            } else if (
-              status === "ditolak"
-            ) {
-
-              ditolak++;
-
-            }
-
+          if (status === "baru") {
+            baru++;
+          } else if (status === "diproses") {
+            diproses++;
+          } else if (status === "selesai") {
+            selesai++;
+          } else if (status === "ditolak") {
+            ditolak++;
           }
-        );
+        });
 
+        document.getElementById("totalCount").textContent = total;
 
-        document.getElementById(
-          "totalCount"
-        ).textContent = total;
+        document.getElementById("baruCount").textContent = baru;
 
-        document.getElementById(
-          "baruCount"
-        ).textContent = baru;
+        document.getElementById("diprosesCount").textContent = diproses;
 
-        document.getElementById(
-          "diprosesCount"
-        ).textContent = diproses;
+        document.getElementById("selesaiCount").textContent = selesai;
 
-        document.getElementById(
-          "selesaiCount"
-        ).textContent = selesai;
+        document.getElementById("ditolakCount").textContent = ditolak;
 
-        document.getElementById(
-          "ditolakCount"
-        ).textContent = ditolak;
+        document.getElementById("chartTotal").textContent = total;
 
+        document.getElementById("legendBaru").textContent = baru;
 
-        document.getElementById(
-          "chartTotal"
-        ).textContent = total;
+        document.getElementById("legendDiproses").textContent = diproses;
 
-        document.getElementById(
-          "legendBaru"
-        ).textContent = baru;
+        document.getElementById("legendSelesai").textContent = selesai;
 
-        document.getElementById(
-          "legendDiproses"
-        ).textContent = diproses;
+        document.getElementById("legendDitolak").textContent = ditolak;
 
-        document.getElementById(
-          "legendSelesai"
-        ).textContent = selesai;
-
-        document.getElementById(
-          "legendDitolak"
-        ).textContent = ditolak;
-
-
-        updateChart(
-          baru,
-          diproses,
-          selesai,
-          ditolak,
-          total
-        );
-
+        updateChart(baru, diproses, selesai, ditolak, total);
 
         renderLatest();
-
       }
-
 
       /* =====================================================
          UPDATE DONUT CHART
       ===================================================== */
 
-      function updateChart(
-        baru,
-        diproses,
-        selesai,
-        ditolak,
-        total
-      ) {
-
-        const chart =
-          document.getElementById(
-            "statusChart"
-          );
-
+      function updateChart(baru, diproses, selesai, ditolak, total) {
+        const chart = document.getElementById("statusChart");
 
         if (total === 0) {
-
-          chart.style.background =
-            "var(--soft)";
+          chart.style.background = "var(--soft)";
 
           return;
-
         }
 
+        const baruDeg = (baru / total) * 360;
 
-        const baruDeg =
-          (baru / total) * 360;
+        const diprosesDeg = (diproses / total) * 360;
 
-        const diprosesDeg =
-          (diproses / total) * 360;
+        const selesaiDeg = (selesai / total) * 360;
 
-        const selesaiDeg =
-          (selesai / total) * 360;
+        const startDiproses = baruDeg;
 
+        const endDiproses = startDiproses + diprosesDeg;
 
-        const startDiproses =
-          baruDeg;
+        const startSelesai = endDiproses;
 
-        const endDiproses =
-          startDiproses +
-          diprosesDeg;
+        const endSelesai = startSelesai + selesaiDeg;
 
-        const startSelesai =
-          endDiproses;
-
-        const endSelesai =
-          startSelesai +
-          selesaiDeg;
-
-        const startDitolak =
-          endSelesai;
-
+        const startDitolak = endSelesai;
 
         chart.style.background = `
           conic-gradient(
@@ -1752,26 +1493,16 @@
             360deg
           )
         `;
-
       }
-
 
       /* =====================================================
          RENDER PENGADUAN TERBARU
       ===================================================== */
 
       function renderLatest() {
+        const container = document.getElementById("latestList");
 
-        const container =
-          document.getElementById(
-            "latestList"
-          );
-
-
-        if (
-          complaints.length === 0
-        ) {
-
+        if (complaints.length === 0) {
           container.innerHTML = `
             <div class="empty">
               <i class="fa-solid fa-inbox"></i>
@@ -1780,59 +1511,32 @@
           `;
 
           return;
-
         }
 
+        const latest = [...complaints]
+          .sort(function (a, b) {
+            return parseDate(b.tanggal) - parseDate(a.tanggal);
+          })
+          .slice(0, 5);
 
-        const latest =
-          [...complaints]
-            .sort(
-              function (a, b) {
+        container.innerHTML = latest
+          .map(function (item) {
+            const status = normalizeStatus(item.status);
 
-                return (
-                  parseDate(b.tanggal) -
-                  parseDate(a.tanggal)
-                );
-
-              }
-            )
-            .slice(0, 5);
-
-
-        container.innerHTML =
-          latest
-            .map(
-              function (item) {
-
-                const status =
-                  normalizeStatus(
-                    item.status
-                  );
-
-
-                return `
+            return `
 
                   <div class="latest-item">
 
                     <div class="latest-info">
 
                       <strong>
-                        ${escapeHTML(
-                          item.judul ||
-                            "-"
-                        )}
+                        ${escapeHTML(item.judul || "-")}
                       </strong>
 
                       <span>
-                        ${escapeHTML(
-                          item.kode ||
-                            "-"
-                        )}
+                        ${escapeHTML(item.kode || "-")}
                         ·
-                        ${escapeHTML(
-                          item.nama ||
-                            "-"
-                        )}
+                        ${escapeHTML(item.nama || "-")}
                       </span>
 
                     </div>
@@ -1840,87 +1544,48 @@
                     <span
                       class="status-badge status-${status}"
                     >
-                      ${escapeHTML(
-                        status
-                      )}
+                      ${escapeHTML(status)}
                     </span>
 
                   </div>
 
                 `;
-
-              }
-            )
-            .join("");
-
+          })
+          .join("");
       }
-
 
       /* =====================================================
          RENDER TABLE
       ===================================================== */
 
       function renderTable() {
+        const container = document.getElementById("tableContainer");
 
-        const container =
-          document.getElementById(
-            "tableContainer"
-          );
+        const search = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
 
+        let filtered = complaints.filter(function (item) {
+          const text = [
+            item.kode,
+            item.nama,
+            item.kategori,
+            item.judul,
+            item.lokasi,
+            item.status,
+          ]
+            .join(" ")
+            .toLowerCase();
 
-        const search =
-          document
-            .getElementById(
-              "searchInput"
-            )
-            .value
-            .toLowerCase()
-            .trim();
+          return text.includes(search);
+        });
 
+        filtered = filtered.sort(function (a, b) {
+          return parseDate(b.tanggal) - parseDate(a.tanggal);
+        });
 
-        let filtered =
-          complaints.filter(
-            function (item) {
-
-              const text = [
-
-                item.kode,
-                item.nama,
-                item.kategori,
-                item.judul,
-                item.lokasi,
-                item.status,
-
-              ]
-                .join(" ")
-                .toLowerCase();
-
-
-              return text.includes(
-                search
-              );
-
-            }
-          );
-
-
-        filtered =
-          filtered.sort(
-            function (a, b) {
-
-              return (
-                parseDate(b.tanggal) -
-                parseDate(a.tanggal)
-              );
-
-            }
-          );
-
-
-        if (
-          filtered.length === 0
-        ) {
-
+        if (filtered.length === 0) {
           container.innerHTML = `
 
             <div class="empty">
@@ -1930,8 +1595,7 @@
               <div>
 
                 ${
-                  complaints.length ===
-                  0
+                  complaints.length === 0
                     ? "Belum ada pengaduan."
                     : "Pengaduan tidak ditemukan."
                 }
@@ -1943,9 +1607,7 @@
           `;
 
           return;
-
         }
-
 
         let html = `
 
@@ -1979,17 +1641,10 @@
 
         `;
 
+        filtered.forEach(function (item, index) {
+          const status = normalizeStatus(item.status);
 
-        filtered.forEach(
-          function (item, index) {
-
-            const status =
-              normalizeStatus(
-                item.status
-              );
-
-
-            html += `
+          html += `
 
               <tr>
 
@@ -2000,10 +1655,7 @@
                 <td>
 
                   <span class="kode">
-                    ${escapeHTML(
-                      item.kode ||
-                        "-"
-                    )}
+                    ${escapeHTML(item.kode || "-")}
                   </span>
 
                 </td>
@@ -2011,35 +1663,23 @@
                 <td>
 
                   <span class="nama">
-                    ${escapeHTML(
-                      item.nama ||
-                        "-"
-                    )}
+                    ${escapeHTML(item.nama || "-")}
                   </span>
 
                 </td>
 
                 <td>
-                  ${escapeHTML(
-                    item.kategori ||
-                      "-"
-                  )}
+                  ${escapeHTML(item.kategori || "-")}
                 </td>
 
                 <td>
 
                   <div
                     class="judul"
-                    title="${escapeHTML(
-                      item.judul ||
-                        "-"
-                    )}"
+                    title="${escapeHTML(item.judul || "-")}"
                   >
 
-                    ${escapeHTML(
-                      item.judul ||
-                        "-"
-                    )}
+                    ${escapeHTML(item.judul || "-")}
 
                   </div>
 
@@ -2048,10 +1688,7 @@
                 <td>
 
                   <span class="tanggal">
-                    ${escapeHTML(
-                      item.tanggal ||
-                        "-"
-                    )}
+                    ${escapeHTML(item.tanggal || "-")}
                   </span>
 
                 </td>
@@ -2061,9 +1698,7 @@
                   <span
                     class="status-badge status-${status}"
                   >
-                    ${escapeHTML(
-                      status
-                    )}
+                    ${escapeHTML(status)}
                   </span>
 
                 </td>
@@ -2074,9 +1709,7 @@
 
                     <button
                       class="action-btn detail-btn"
-                      onclick="detailPengaduan('${escapeJS(
-                        item.id
-                      )}')"
+                      onclick="detailPengaduan('${escapeJS(item.id)}')"
                     >
 
                       <i class="fa-solid fa-eye"></i>
@@ -2088,9 +1721,7 @@
 
                     <button
                       class="action-btn delete-btn"
-                      onclick="hapusPengaduan('${escapeJS(
-                        item.id
-                      )}')"
+                      onclick="hapusPengaduan('${escapeJS(item.id)}')"
                     >
 
                       <i class="fa-solid fa-trash"></i>
@@ -2106,10 +1737,7 @@
               </tr>
 
             `;
-
-          }
-        );
-
+        });
 
         html += `
 
@@ -2119,391 +1747,191 @@
 
         `;
 
-
-        container.innerHTML =
-          html;
-
+        container.innerHTML = html;
       }
-
 
       /* =====================================================
          DETAIL
       ===================================================== */
 
       function detailPengaduan(id) {
-
         if (!id) {
           return;
         }
 
-
         window.location.href =
-          "detail-pengaduan.html?id=" +
-          encodeURIComponent(id);
-
+          "detail-pengaduan.html?id=" + encodeURIComponent(id);
       }
-
 
       /* =====================================================
          HAPUS PENGADUAN
       ===================================================== */
 
       function hapusPengaduan(id) {
-
-        const item =
-          complaints.find(
-            function (data) {
-
-              return (
-                String(data.id) ===
-                String(id)
-              );
-
-            }
-          );
-
+        const item = complaints.find(function (data) {
+          return String(data.id) === String(id);
+        });
 
         if (!item) {
-
-          showToast(
-            "Data tidak ditemukan.",
-            true
-          );
+          showToast("Data tidak ditemukan.", true);
 
           return;
-
         }
 
-
-        const yakin =
-          confirm(
-            "Yakin ingin menghapus pengaduan " +
-              (item.kode || "") +
-              "?\n\nData yang dihapus tidak dapat dikembalikan."
-          );
-
+        const yakin = confirm(
+          "Yakin ingin menghapus pengaduan " +
+            (item.kode || "") +
+            "?\n\nData yang dihapus tidak dapat dikembalikan.",
+        );
 
         if (!yakin) {
           return;
         }
 
+        const formData = new FormData();
 
-        const formData =
-          new FormData();
+        formData.append("action", "hapus");
 
+        formData.append("id", id);
 
-        formData.append(
-          "action",
-          "hapus"
-        );
-
-        formData.append(
-          "id",
-          id
-        );
-
-
-        showToast(
-          "Menghapus pengaduan..."
-        );
-
+        showToast("Menghapus pengaduan...");
 
         fetch(API_URL, {
-
           method: "POST",
 
           body: formData,
 
           mode: "no-cors",
-
         })
+          .then(function () {
+            setTimeout(function () {
+              loadData();
 
-          .then(
-            function () {
+              showToast("Pengaduan berhasil dihapus.");
+            }, 700);
+          })
 
-              setTimeout(
-                function () {
+          .catch(function (error) {
+            console.error(error);
 
-                  loadData();
-
-                  showToast(
-                    "Pengaduan berhasil dihapus."
-                  );
-
-                },
-                700
-              );
-
-            }
-          )
-
-          .catch(
-            function (error) {
-
-              console.error(error);
-
-              showToast(
-                "Gagal menghapus pengaduan.",
-                true
-              );
-
-            }
-          );
-
+            showToast("Gagal menghapus pengaduan.", true);
+          });
       }
-
 
       /* =====================================================
          NORMALIZE STATUS
       ===================================================== */
 
-      function normalizeStatus(
-        status
-      ) {
+      function normalizeStatus(status) {
+        const value = String(status || "baru")
+          .toLowerCase()
+          .trim();
 
-        const value =
-          String(
-            status || "baru"
-          )
-            .toLowerCase()
-            .trim();
+        const allowed = ["baru", "diproses", "selesai", "ditolak"];
 
-
-        const allowed = [
-          "baru",
-          "diproses",
-          "selesai",
-          "ditolak",
-        ];
-
-
-        if (
-          allowed.includes(
-            value
-          )
-        ) {
-
+        if (allowed.includes(value)) {
           return value;
-
         }
 
-
         return "baru";
-
       }
-
 
       /* =====================================================
          PARSE DATE
       ===================================================== */
 
-      function parseDate(
-        value
-      ) {
-
+      function parseDate(value) {
         if (!value) {
           return 0;
         }
 
-
-        const match =
-          String(value).match(
-            /^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?$/
-          );
-
+        const match = String(value).match(
+          /^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?$/,
+        );
 
         if (!match) {
+          const fallback = Date.parse(value);
 
-          const fallback =
-            Date.parse(value);
-
-          return isNaN(fallback)
-            ? 0
-            : fallback;
-
+          return isNaN(fallback) ? 0 : fallback;
         }
 
+        const day = Number(match[1]);
 
-        const day =
-          Number(match[1]);
+        const month = Number(match[2]) - 1;
 
-        const month =
-          Number(match[2]) - 1;
+        const year = Number(match[3]);
 
-        const year =
-          Number(match[3]);
+        const hour = Number(match[4] || 0);
 
-        const hour =
-          Number(
-            match[4] || 0
-          );
+        const minute = Number(match[5] || 0);
 
-        const minute =
-          Number(
-            match[5] || 0
-          );
-
-
-        return new Date(
-          year,
-          month,
-          day,
-          hour,
-          minute
-        ).getTime();
-
+        return new Date(year, month, day, hour, minute).getTime();
       }
-
 
       /* =====================================================
          ESCAPE HTML
       ===================================================== */
 
-      function escapeHTML(
-        value
-      ) {
-
-        return String(
-          value ?? ""
-        )
-          .replace(
-            /&/g,
-            "&amp;"
-          )
-          .replace(
-            /</g,
-            "&lt;"
-          )
-          .replace(
-            />/g,
-            "&gt;"
-          )
-          .replace(
-            /"/g,
-            "&quot;"
-          )
-          .replace(
-            /'/g,
-            "&#039;"
-          );
-
+      function escapeHTML(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
       }
-
 
       /* =====================================================
          ESCAPE JAVASCRIPT
       ===================================================== */
 
-      function escapeJS(
-        value
-      ) {
-
-        return String(
-          value ?? ""
-        )
-          .replace(
-            /\\/g,
-            "\\\\"
-          )
-          .replace(
-            /'/g,
-            "\\'"
-          )
-          .replace(
-            /\n/g,
-            "\\n"
-          )
-          .replace(
-            /\r/g,
-            "\\r"
-          );
-
+      function escapeJS(value) {
+        return String(value ?? "")
+          .replace(/\\/g, "\\\\")
+          .replace(/'/g, "\\'")
+          .replace(/\n/g, "\\n")
+          .replace(/\r/g, "\\r");
       }
-
 
       /* =====================================================
          CLEANUP JSONP
       ===================================================== */
 
-      function cleanupJSONP(
-        callbackName
-      ) {
-
-        const script =
-          document.getElementById(
-            callbackName
-          );
-
+      function cleanupJSONP(callbackName) {
+        const script = document.getElementById(callbackName);
 
         if (script) {
           script.remove();
         }
 
-
-        delete window[
-          callbackName
-        ];
-
+        delete window[callbackName];
       }
-
 
       /* =====================================================
          TOAST
       ===================================================== */
 
-      function showToast(
-        message,
-        error = false
-      ) {
+      function showToast(message, error = false) {
+        const toast = document.getElementById("toast");
 
-        const toast =
-          document.getElementById(
-            "toast"
-          );
+        toast.textContent = message;
 
+        toast.classList.toggle("error", error);
 
-        toast.textContent =
-          message;
+        toast.classList.add("show");
 
-
-        toast.classList.toggle(
-          "error",
-          error
-        );
-
-
-        toast.classList.add(
-          "show"
-        );
-
-
-        setTimeout(
-          function () {
-
-            toast.classList.remove(
-              "show"
-            );
-
-          },
-          3000
-        );
-
+        setTimeout(function () {
+          toast.classList.remove("show");
+        }, 3000);
       }
-
 
       /* =====================================================
          LOAD DATA SAAT HALAMAN DIBUKA
       ===================================================== */
 
-      document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-          loadData();
-
-        }
-      );
-
+      document.addEventListener("DOMContentLoaded", function () {
+        loadData();
+      });
     </script>
   </body>
 </html>
