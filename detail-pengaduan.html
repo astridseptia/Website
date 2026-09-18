@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Detail Pengaduan — Semparuk Sutera</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+:root{
+    --primary:#008fd5;
+    --primary-dark:#00649b;
+    --secondary:#39d6c5;
+    --accent:#8ff5df;
+
+    --bg:#eafbf8;
+    --soft:#f5fffd;
+    --card:#ffffff;
+
+    --text:#173b4d;
+    --muted:#66808c;
+    --navy:#063b52;
+
+    --border:rgba(0,143,213,.13);
+
+    --icon-bg:#e8faf7;
+
+    --shadow:
+        0 12px 35px rgba(0,100,150,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+body.dark{
+    --bg:#071c27;
+    --soft:#0c2733;
+    --card:#103241;
+    --text:#e9faff;
+    --muted:#9bb5c0;
+    --border:rgba(143,245,223,.12);
+    --icon-bg:#123b49;
+    --shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    height:76px;
+
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    z-index:1000;
+
+    background:rgba(6,59,82,.94);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+
+.nav-container{
+    max-width:1200px;
+    height:100%;
+
+    margin:auto;
+
+    padding:0 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    color:white;
+    text-decoration:none;
+
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--accent);
+}
+
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-menu a{
+    color:white;
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.nav-menu a:hover{
+    color:var(--accent);
+}
+
+.nav-menu a.active{
+    color:var(--accent);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-btn{
+    width:40px;
+    height:40px;
+
+    border:0;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.nav-btn:hover{
+    background:rgba(255,255,255,.2);
+}
+
+.menu-btn{
+    display:none;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:
+        125px 25px
+        60px;
+}
+
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    margin-bottom:20px;
+
+    font-size:13px;
+    color:var(--muted);
+}
+
+.breadcrumb a{
+    color:var(--primary);
+    text-decoration:none;
+}
+
+.breadcrumb i{
+    font-size:10px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header{
+    margin-bottom:28px;
+}
+
+.page-header h1{
+    font-size:32px;
+    line-height:1.2;
+
+    margin-bottom:8px;
+}
+
+.page-header p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+}
+
+.card-header{
+    padding:24px 28px;
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+.card-header h2{
+    font-size:18px;
+}
+
+.card-body{
+    padding:28px;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    padding:8px 13px;
+
+    border-radius:50px;
+
+    font-size:12px;
+    font-weight:700;
+
+    text-transform:capitalize;
+}
+
+.status::before{
+    content:"";
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:currentColor;
+}
+
+.status-baru{
+    color:#0077b6;
+    background:#e5f6ff;
+}
+
+.status-diproses{
+    color:#b77900;
+    background:#fff4d8;
+}
+
+.status-selesai{
+    color:#138a58;
+    background:#e4f8ed;
+}
+
+.status-ditolak{
+    color:#d43d4f;
+    background:#ffe8ec;
+}
+
+
+/* =========================
+   INFO GRID
+========================= */
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:30px;
+}
+
+.info-item{
+    padding:17px;
+
+    border-radius:14px;
+
+    background:var(--soft);
+
+    border:1px solid var(--border);
+}
+
+.info-label{
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    color:var(--muted);
+
+    margin-bottom:7px;
+
+    font-weight:700;
+}
+
+.info-value{
+    font-size:14px;
+
+    font-weight:600;
+
+    word-break:break-word;
+}
+
+.info-value a{
+    color:var(--primary);
+
+    text-decoration:none;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content-section{
+    margin-top:26px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:15px;
+
+    margin-bottom:12px;
+}
+
+.section-title i{
+    color:var(--primary);
+}
+
+.complaint-title{
+    font-size:21px;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+}
+
+.complaint-content{
+    background:var(--soft);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:20px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+}
+
+.location{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+
+    padding:16px;
+
+    background:var(--soft);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    font-size:14px;
+}
+
+.location i{
+    color:var(--primary);
+
+    margin-top:2px;
+}
+
+
+/* =========================
+   ADMIN FORM
+========================= */
+
+.admin-box{
+    margin-top:30px;
+
+    padding:24px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,143,213,.07),
+            rgba(57,214,197,.07)
+        );
+
+    border:1px solid var(--border);
+}
+
+.admin-box h3{
+    font-size:17px;
+
+    margin-bottom:5px;
+}
+
+.admin-box > p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:22px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+}
+
+.form-group select,
+.form-group textarea{
+    width:100%;
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    transition:.25s;
+}
+
+.form-group select{
+    height:48px;
+
+    padding:0 14px;
+}
+
+.form-group textarea{
+    min-height:150px;
+
+    padding:14px;
+
+    resize:vertical;
+
+    line-height:1.6;
+}
+
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,143,213,.1);
+}
+
+.form-actions{
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:22px;
+}
+
+.btn{
+    border:0;
+
+    padding:12px 19px;
+
+    border-radius:11px;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.btn-primary{
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    box-shadow:
+        0 7px 20px
+        rgba(0,143,213,.18);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+    background:var(--soft);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+}
+
+.btn-secondary:hover{
+    background:var(--icon-bg);
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+    padding:70px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+
+    border:3px solid
+        rgba(0,143,213,.15);
+
+    border-top-color:var(--primary);
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-box{
+    padding:45px 25px;
+
+    text-align:center;
+}
+
+.error-icon{
+    width:65px;
+    height:65px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#ffe8ec;
+
+    color:#d43d4f;
+
+    font-size:25px;
+}
+
+.error-box h2{
+    font-size:20px;
+
+    margin-bottom:7px;
+}
+
+.error-box p{
+    color:var(--muted);
+
+    font-size:14px;
+
+    margin-bottom:20px;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    z-index:3000;
+
+    max-width:350px;
+
+    padding:14px 17px;
+
+    border-radius:12px;
+
+    background:var(--navy);
+
+    color:white;
+
+    font-size:13px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.2);
+
+    transform:
+        translateY(20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+.toast.success{
+    background:#138a58;
+}
+
+.toast.error{
+    background:#d43d4f;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .nav-menu{
+        display:none;
+
+        position:absolute;
+
+        top:76px;
+        left:15px;
+        right:15px;
+
+        padding:18px;
+
+        background:var(--navy);
+
+        border-radius:15px;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+        box-shadow:var(--shadow);
+    }
+
+    .nav-menu.show{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .page{
+        padding:
+            110px 16px
+            40px;
+    }
+
+    .page-header h1{
+        font-size:26px;
+    }
+
+    .card-header{
+        padding:20px;
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .card-body{
+        padding:20px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-actions{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            Semparuk <span>Sutera</span>
+        </a>
+
+
+        <nav class="nav-menu" id="navMenu">
+
+            <a href="index.html">
+                Beranda
+            </a>
+
+            <a href="pengaduan.html">
+                Pengaduan
+            </a>
+
+            <a href="admin.html" class="active">
+                Admin
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <button
+                class="nav-btn"
+                id="darkModeBtn"
+                title="Mode Gelap">
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+
+            <button
+                class="nav-btn menu-btn"
+                id="menuBtn">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+    <div class="breadcrumb">
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <span>
+            Detail Pengaduan
+        </span>
+
+    </div>
+
+
+
+    <div class="page-header">
+
+        <h1>
+            Detail Pengaduan
+        </h1>
+
+        <p>
+            Lihat informasi lengkap dan kelola status pengaduan warga.
+        </p>
+
+    </div>
+
+
+
+    <div id="app">
+
+        <div class="card">
+
+            <div class="loading">
+
+                <div class="spinner"></div>
+
+                Memuat data pengaduan...
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   KONFIGURASI API
+===================================================== */
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbwliK35f6DEpMwB9lBITkdil3HwGJxXXm6fgBNoE8vRvKjiVy8ZqkjOMnaOl1fI9Xb2dQ/exec";
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const app =
+    document.getElementById("app");
+
+const toast =
+    document.getElementById("toast");
+
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+const darkModeBtn =
+    document.getElementById("darkModeBtn");
+
+
+if(
+    localStorage.getItem("darkMode")
+    ===
+    "true"
+){
+
+    document.body.classList.add("dark");
+
+    darkModeBtn.innerHTML =
+        '<i class="fa-solid fa-sun"></i>';
+
+}
+
+
+darkModeBtn.addEventListener(
+    "click",
+    function(){
+
+        document.body.classList.toggle("dark");
+
+        const dark =
+            document.body.classList.contains("dark");
+
+        localStorage.setItem(
+            "darkMode",
+            dark
+        );
+
+        darkModeBtn.innerHTML =
+            dark
+            ?
+            '<i class="fa-solid fa-sun"></i>'
+            :
+            '<i class="fa-solid fa-moon"></i>';
+
+    }
+);
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navMenu =
+    document.getElementById("navMenu");
+
+
+menuBtn.addEventListener(
+    "click",
+    function(){
+
+        navMenu.classList.toggle("show");
+
+    }
+);
+
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function showToast(
+    message,
+    type="success"
+){
+
+    toast.textContent =
+        message;
+
+    toast.className =
+        "toast show " +
+        type;
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            function(){
+
+                toast.className =
+                    "toast";
+
+            },
+            3000
+        );
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+
+/* =====================================================
+   GET ID DARI URL
+===================================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const complaintId =
+    params.get("id");
+
+
+/* =====================================================
+   VALIDASI ID
+===================================================== */
+
+if(!complaintId){
+
+    showError(
+        "ID pengaduan tidak ditemukan.",
+        "URL halaman tidak memiliki ID pengaduan."
+    );
+
+}else{
+
+    loadComplaint();
+
+}
+
+
+
+/* =====================================================
+   LOAD DETAIL
+===================================================== */
+
+function loadComplaint(){
+
+    const callbackName =
+        "detailCallback_" +
+        Date.now();
+
+
+    window[callbackName] =
+        function(response){
+
+            try{
+
+                if(
+                    response &&
+                    response.success &&
+                    response.data
+                ){
+
+                    renderComplaint(
+                        response.data
+                    );
+
+                }else{
+
+                    showError(
+                        "Pengaduan tidak ditemukan.",
+                        response?.message ||
+                        "Data tidak tersedia."
+                    );
+
+                }
+
+            }catch(error){
+
+                console.error(error);
+
+                showError(
+                    "Terjadi kesalahan.",
+                    "Data pengaduan tidak dapat diproses."
+                );
+
+            }
+
+
+            cleanup();
+
+        };
+
+
+    const script =
+        document.createElement("script");
+
+
+    script.src =
+        API_URL +
+        "?action=detail" +
+        "&id=" +
+        encodeURIComponent(
+            complaintId
+        ) +
+        "&callback=" +
+        callbackName;
+
+
+    script.onerror =
+        function(){
+
+            showError(
+                "Gagal terhubung ke server.",
+                "Periksa URL Google Apps Script Web App."
+            );
+
+            cleanup();
+
+        };
+
+
+    document.body.appendChild(
+        script
+    );
+
+
+    function cleanup(){
+
+        script.remove();
+
+        delete window[
+            callbackName
+        ];
+
+    }
+
+}
+
+
+
+/* =====================================================
+   RENDER DETAIL
+===================================================== */
+
+function renderComplaint(
+    data
+){
+
+    const status =
+        String(
+            data.status || "baru"
+        ).toLowerCase();
+
+
+    let statusClass =
+        "status-baru";
+
+
+    if(
+        status === "diproses"
+    ){
+
+        statusClass =
+            "status-diproses";
+
+    }
+
+    if(
+        status === "selesai"
+    ){
+
+        statusClass =
+            "status-selesai";
+
+    }
+
+    if(
+        status === "ditolak"
+    ){
+
+        statusClass =
+            "status-ditolak";
+
+    }
+
+
+    const kontak =
+        escapeHTML(
+            data.kontak || "-"
+        );
+
+
+    app.innerHTML = `
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Pengaduan
+                        ${escapeHTML(data.kode || "-")}
+                    </h2>
+
+                </div>
+
+                <span
+                    class="status ${statusClass}">
+
+                    ${escapeHTML(status)}
+
+                </span>
+
+            </div>
+
+
+            <div class="card-body">
+
+
+                <!-- INFORMASI -->
+
+                <div class="info-grid">
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Kode Pengaduan
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(data.kode || "-")}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Nama Warga
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(data.nama || "-")}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Kontak
+                        </div>
+
+                        <div class="info-value">
+
+                            ${
+                                data.kontak
+                                ?
+                                `<a href="tel:${escapeHTML(data.kontak)}">
+                                    ${kontak}
+                                </a>`
+                                :
+                                "-"
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Kategori
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(data.kategori || "-")}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Tanggal Pengaduan
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(data.tanggal || "-")}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Terakhir Diperbarui
+                        </div>
+
+                        <div class="info-value">
+                            ${escapeHTML(data.diperbarui || "-")}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOKASI -->
+
+                <div class="content-section">
+
+                    <div class="section-title">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Lokasi Kejadian
+
+                    </div>
+
+
+                    <div class="location">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <span>
+                            ${escapeHTML(data.lokasi || "Lokasi tidak dicantumkan.")}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- JUDUL -->
+
+                <div class="content-section">
+
+                    <div class="section-title">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                        Judul Pengaduan
+
+                    </div>
+
+
+                    <div class="complaint-title">
+
+                        ${escapeHTML(data.judul || "-")}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ISI -->
+
+                <div class="content-section">
+
+                    <div class="section-title">
+
+                        <i class="fa-solid fa-align-left"></i>
+
+                        Isi Pengaduan
+
+                    </div>
+
+
+                    <div class="complaint-content">
+
+                        ${escapeHTML(data.isi || "-")}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADMIN -->
+
+                <div class="admin-box">
+
+                    <h3>
+                        <i class="fa-solid fa-user-shield"></i>
+                        Tindakan Admin
+                    </h3>
+
+                    <p>
+                        Perbarui status dan berikan tanggapan kepada warga.
+                    </p>
+
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status Pengaduan
+                        </label>
+
+
+                        <select id="status">
+
+                            <option
+                                value="baru"
+                                ${status === "baru" ? "selected" : ""}>
+                                Baru
+                            </option>
+
+                            <option
+                                value="diproses"
+                                ${status === "diproses" ? "selected" : ""}>
+                                Diproses
+                            </option>
+
+                            <option
+                                value="selesai"
+                                ${status === "selesai" ? "selected" : ""}>
+                                Selesai
+                            </option>
+
+                            <option
+                                value="ditolak"
+                                ${status === "ditolak" ? "selected" : ""}>
+                                Ditolak
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="tanggapan">
+                            Tanggapan Admin
+                        </label>
+
+
+                        <textarea
+                            id="tanggapan"
+                            placeholder="Tulis tanggapan untuk warga..."
+                        >${escapeHTML(data.tanggapan || "")}</textarea>
+
+                    </div>
+
+
+
+                    <div class="form-actions">
+
+                        <button
+                            class="btn btn-secondary"
+                            onclick="window.location.href='admin.html'">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
+                            Kembali
+
+                        </button>
+
+
+                        <button
+                            class="btn btn-primary"
+                            id="saveBtn"
+                            onclick="updateComplaint()">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Simpan Perubahan
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   UPDATE PENGADUAN
+===================================================== */
+
+function updateComplaint(){
+
+    const status =
+        document.getElementById(
+            "status"
+        ).value;
+
+
+    const tanggapan =
+        document.getElementById(
+            "tanggapan"
+        ).value;
+
+
+    const saveBtn =
+        document.getElementById(
+            "saveBtn"
+        );
+
+
+    saveBtn.disabled =
+        true;
+
+
+    saveBtn.innerHTML = `
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        Menyimpan...
+    `;
+
+
+    const formData =
+        new URLSearchParams();
+
+
+    formData.append(
+        "action",
+        "update"
+    );
+
+
+    formData.append(
+        "id",
+        complaintId
+    );
+
+
+    formData.append(
+        "status",
+        status
+    );
+
+
+    formData.append(
+        "tanggapan",
+        tanggapan
+    );
+
+
+    fetch(
+        API_URL,
+        {
+            method:"POST",
+
+            mode:"no-cors",
+
+            headers:{
+                "Content-Type":
+                    "application/x-www-form-urlencoded"
+            },
+
+            body:
+                formData.toString()
+        }
+    )
+
+    .then(
+        function(){
+
+            /*
+             * Karena no-cors,
+             * response POST tidak bisa
+             * dibaca oleh browser.
+             *
+             * Kita anggap request berhasil
+             * dan tampilkan notifikasi.
+             */
+
+            showToast(
+                "Perubahan berhasil dikirim ke server.",
+                "success"
+            );
+
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                        "admin.html";
+
+                },
+                1200
+            );
+
+        }
+    )
+
+    .catch(
+        function(error){
+
+            console.error(error);
+
+            saveBtn.disabled =
+                false;
+
+            saveBtn.innerHTML = `
+                <i class="fa-solid fa-floppy-disk"></i>
+                Simpan Perubahan
+            `;
+
+
+            showToast(
+                "Gagal mengirim perubahan.",
+                "error"
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   ERROR PAGE
+===================================================== */
+
+function showError(
+    title,
+    message
+){
+
+    app.innerHTML = `
+
+        <div class="card">
+
+            <div class="error-box">
+
+                <div class="error-icon">
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                </div>
+
+
+                <h2>
+                    ${escapeHTML(title)}
+                </h2>
+
+
+                <p>
+                    ${escapeHTML(message)}
+                </p>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="window.location.href='admin.html'">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Kembali ke Admin
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>

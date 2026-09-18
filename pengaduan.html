@@ -1,0 +1,2075 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pengaduan Warga - Desa Semparuk</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <style>
+    :root {
+      --primary: #008fd5;
+      --primary-dark: #00649b;
+      --secondary: #39d6c5;
+      --accent: #8ff5df;
+      --bg: #eafbf8;
+      --soft: #f5fffd;
+      --card: #ffffff;
+      --text: #173b4d;
+      --muted: #66808c;
+      --navy: #063b52;
+      --border: rgba(0, 143, 213, 0.13);
+      --icon-bg: #e8faf7;
+      --shadow: 0 12px 35px rgba(0, 100, 150, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: 0.3s;
+    }
+
+    body.dark {
+      --bg: #071d28;
+      --soft: #0b2734;
+      --card: #102f3d;
+      --text: #e9faff;
+      --muted: #a7c1ca;
+      --navy: #e9faff;
+      --border: rgba(143, 245, 223, 0.12);
+      --icon-bg: #123b48;
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 76px;
+      z-index: 1000;
+      background: rgba(6, 59, 82, 0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 43px;
+      height: 43px;
+      border-radius: 12px;
+      background: linear-gradient(
+        135deg,
+        var(--secondary),
+        var(--primary)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 11px;
+      opacity: 0.75;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-btn,
+    .menu-btn {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 15px;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .page-header {
+      padding: 150px 0 80px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(57, 214, 197, 0.2),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #eafbf8,
+          #f5fffd
+        );
+    }
+
+    body.dark .page-header {
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(57, 214, 197, 0.1),
+          transparent 35%
+        ),
+        #071d28;
+    }
+
+    .page-header-content {
+      max-width: 760px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(0, 143, 213, 0.08);
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    body.dark .badge {
+      color: var(--accent);
+      background: rgba(143, 245, 223, 0.08);
+    }
+
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: var(--navy);
+    }
+
+    .page-header h1 span {
+      color: var(--primary);
+    }
+
+    .page-header p {
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 15px;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .content-section {
+      padding: 70px 0;
+    }
+
+    .form-wrapper {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .card-title {
+      margin-bottom: 6px;
+      font-size: 22px;
+      color: var(--navy);
+    }
+
+    .card-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    label span {
+      color: #e74c3c;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 13px;
+      outline: none;
+      background: var(--soft);
+      color: var(--text);
+      transition: 0.25s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 143, 213, 0.08);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 14px 20px;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 143, 213, 0.2);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* =========================
+       INFO
+    ========================= */
+
+    .info-box {
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--icon-bg);
+      margin-bottom: 15px;
+    }
+
+    .info-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    body.dark .info-icon {
+      background: #173d4b;
+    }
+
+    .info-box h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .info-box p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status-section {
+      margin-top: 25px;
+    }
+
+    .status-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .status-form input {
+      flex: 1;
+    }
+
+    .check-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 0 22px;
+      background: var(--navy);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    body.dark .check-btn {
+      color: #063b52;
+      background: var(--accent);
+    }
+
+    .check-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       RESULT
+    ========================= */
+
+    .result-box {
+      display: none;
+      margin-top: 20px;
+      padding: 22px;
+      border-radius: 16px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-title {
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .result-row:last-child {
+      border-bottom: 0;
+    }
+
+    .result-label {
+      color: var(--muted);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 5px 11px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: capitalize;
+    }
+
+    .status-baru {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-diproses {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .status-selesai {
+      background: #d1fae5;
+      color: #047857;
+    }
+
+    .status-ditolak {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    /* =========================
+       SUCCESS MODAL
+    ========================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(450px, 100%);
+      background: var(--card);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+    }
+
+    .success-icon {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #d1fae5;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .modal-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .modal-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .kode-box {
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 13px;
+      background: var(--soft);
+      border: 1px dashed var(--primary);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--primary-dark);
+      word-break: break-all;
+    }
+
+    body.dark .kode-box {
+      color: var(--accent);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-buttons button {
+      flex: 1;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .copy-btn {
+      background: var(--primary);
+      color: white;
+    }
+
+    .close-btn {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 12px;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 30px 0;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 950px) {
+
+      .nav-menu {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        background: #063b52;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-menu.show {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .form-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .status-form {
+        flex-direction: column;
+      }
+
+      .check-btn {
+        padding: 13px;
+      }
+
+      .modal-buttons {
+        flex-direction: column;
+      }
+
+      .result-row {
+        flex-direction: column;
+        gap: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a href="index.html" class="brand">
+
+        <div class="brand-logo">
+          DS
+        </div>
+
+        <div>
+          <strong>Desa Semparuk</strong>
+          <small>Kabupaten Sambas</small>
+        </div>
+
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+
+        <a href="index.html">
+          Beranda
+        </a>
+
+        <a href="profil.html">
+          Profil
+        </a>
+
+        <a href="program.html">
+          Program
+        </a>
+
+        <a href="fasilitas.html">
+          Fasilitas
+        </a>
+
+        <a href="galeri.html">
+          Galeri
+        </a>
+
+        <a href="berita.html">
+          Berita
+        </a>
+
+        <a href="kontak.html">
+          Kontak
+        </a>
+
+        <a href="pengaduan.html" class="active">
+          <i class="fa-solid fa-file-circle-exclamation"></i>
+          Pengaduan
+        </a>
+
+        <a href="admin.html">
+          <i class="fa-solid fa-user-shield"></i>
+          Admin 
+        </a>
+
+      </nav>
+
+      <div class="nav-actions">
+
+        <button
+          class="theme-btn"
+          id="themeBtn"
+          onclick="toggleTheme()"
+          aria-label="Mode gelap"
+        >
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button
+          class="menu-btn"
+          onclick="toggleMenu()"
+          aria-label="Menu"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       PAGE HEADER
+  ========================= -->
+
+  <section class="page-header">
+
+    <div class="container">
+
+      <div class="page-header-content">
+
+        <div class="badge">
+          <i class="fa-solid fa-comments"></i>
+          Layanan Warga
+        </div>
+
+        <h1>
+          Sampaikan <span>Pengaduan</span>
+        </h1>
+
+        <p>
+          Sampaikan pengaduan atau laporan mengenai kondisi
+          di Dusun Semparuk Sutera. Setiap laporan akan diterima
+          dan ditindaklanjuti oleh admin.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <section class="content-section">
+
+    <div class="container">
+
+      <div class="form-wrapper">
+
+        <!-- FORM -->
+
+        <div class="card">
+
+          <h2 class="card-title">
+            Formulir Pengaduan
+          </h2>
+
+          <p class="card-description">
+            Isi data berikut dengan lengkap dan benar.
+          </p>
+
+
+          <form id="pengaduanForm">
+
+            <div class="form-row">
+
+              <div class="form-group">
+
+                <label>
+                  Nama <span>*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="nama"
+                  name="nama"
+                  placeholder="Masukkan nama Anda"
+                  required
+                />
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Email / No. WhatsApp
+                </label>
+
+                <input
+                  type="text"
+                  id="kontak"
+                  name="kontak"
+                  placeholder="Contoh: 08123456789"
+                />
+
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Kategori Pengaduan <span>*</span>
+              </label>
+
+              <select
+                id="kategori"
+                name="kategori"
+                required
+              >
+
+                <option value="">
+                  -- Pilih Kategori --
+                </option>
+
+                <option value="Infrastruktur">
+                  Infrastruktur
+                </option>
+
+                <option value="Kebersihan">
+                  Kebersihan
+                </option>
+
+                <option value="Keamanan">
+                  Keamanan
+                </option>
+
+                <option value="Pelayanan Desa">
+                  Pelayanan Desa
+                </option>
+
+                <option value="Lingkungan">
+                  Lingkungan
+                </option>
+
+                <option value="Fasilitas Umum">
+                  Fasilitas Umum
+                </option>
+
+                <option value="Lainnya">
+                  Lainnya
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Judul Pengaduan <span>*</span>
+              </label>
+
+              <input
+                type="text"
+                id="judul"
+                name="judul"
+                placeholder="Contoh: Jalan rusak di Dusun Sutera"
+                required
+              />
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Isi Pengaduan <span>*</span>
+              </label>
+
+              <textarea
+                id="isi"
+                name="isi"
+                placeholder="Jelaskan pengaduan Anda secara lengkap..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Lokasi Kejadian
+              </label>
+
+              <input
+                type="text"
+                id="lokasi"
+                name="lokasi"
+                placeholder="Contoh: Jalan utama Dusun Sutera"
+              />
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="submit-btn"
+              id="submitBtn"
+            >
+
+              <i class="fa-solid fa-paper-plane"></i>
+              Kirim Pengaduan
+
+            </button>
+
+
+            <div
+              class="error-message"
+              id="errorMessage"
+            ></div>
+
+          </form>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div>
+
+          <div class="card">
+
+            <h2 class="card-title">
+              Informasi
+            </h2>
+
+            <p class="card-description">
+              Sebelum mengirim laporan, perhatikan beberapa hal berikut.
+            </p>
+
+
+            <div class="info-box">
+
+              <div class="info-icon">
+                <i class="fa-solid fa-file-lines"></i>
+              </div>
+
+              <h3>
+                Isi Laporan Dengan Jelas
+              </h3>
+
+              <p>
+                Jelaskan masalah yang terjadi agar laporan
+                lebih mudah dipahami dan ditindaklanjuti.
+              </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-icon">
+                <i class="fa-solid fa-key"></i>
+              </div>
+
+              <h3>
+                Simpan Kode Pengaduan
+              </h3>
+
+              <p>
+                Setelah mengirim laporan, Anda akan mendapatkan
+                kode pengaduan untuk mengecek status laporan.
+              </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-icon">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+
+              <h3>
+                Pantau Status
+              </h3>
+
+              <p>
+                Status laporan dapat berubah menjadi baru,
+                diproses, selesai, atau ditolak.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           CEK STATUS
+      ========================= -->
+
+      <div class="card status-section">
+
+        <h2 class="card-title">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Cek Status Pengaduan
+
+        </h2>
+
+
+        <p class="card-description">
+
+          Sudah mengirim pengaduan?
+          Masukkan kode pengaduan Anda untuk melihat
+          status dan tanggapan dari admin.
+
+        </p>
+
+
+        <form
+          class="status-form"
+          id="statusForm"
+        >
+
+          <input
+            type="text"
+            id="kodeCek"
+            placeholder="Contoh: PGD-20260918-A7K9M2"
+            required
+          />
+
+          <button
+            type="submit"
+            class="check-btn"
+            id="checkBtn"
+          >
+            Cek Status
+          </button>
+
+        </form>
+
+
+        <div
+          class="result-box"
+          id="resultBox"
+        >
+
+          <div class="result-title">
+            Hasil Pengaduan
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Kode
+            </span>
+
+            <strong id="resultKode"></strong>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Kategori
+            </span>
+
+            <span id="resultKategori"></span>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Judul
+            </span>
+
+            <span id="resultJudul"></span>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Lokasi
+            </span>
+
+            <span id="resultLokasi"></span>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Status
+            </span>
+
+            <span id="resultStatus"></span>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Tanggapan Admin
+            </span>
+
+            <span id="resultTanggapan"></span>
+
+          </div>
+
+
+          <div class="result-row">
+
+            <span class="result-label">
+              Tanggal
+            </span>
+
+            <span id="resultTanggal"></span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SUCCESS MODAL
+  ========================= -->
+
+  <div
+    class="modal"
+    id="successModal"
+  >
+
+    <div class="modal-card">
+
+      <div class="success-icon">
+
+        <i class="fa-solid fa-check"></i>
+
+      </div>
+
+
+      <h2>
+        Pengaduan Berhasil!
+      </h2>
+
+
+      <p>
+
+        Pengaduan Anda berhasil dikirim.
+        Simpan kode berikut untuk mengecek status laporan.
+
+      </p>
+
+
+      <div
+        class="kode-box"
+        id="kodeHasil"
+      >
+        -
+      </div>
+
+
+      <div class="modal-buttons">
+
+        <button
+          class="copy-btn"
+          onclick="copyKode()"
+        >
+
+          <i class="fa-solid fa-copy"></i>
+          Salin Kode
+
+        </button>
+
+
+        <button
+          class="close-btn"
+          onclick="closeModal()"
+        >
+
+          Tutup
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      © 2026 Desa Semparuk Sutera —
+      Kabupaten Sambas
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    /* =====================================================
+       KONFIGURASI API
+    ===================================================== */
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbwliK35f6DEpMwB9lBITkdil3HwGJxXXm6fgBNoE8vRvKjiVy8ZqkjOMnaOl1fI9Xb2dQ/exec";
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    function toggleMenu() {
+
+      document
+        .getElementById("navMenu")
+        .classList
+        .toggle("show");
+
+    }
+
+
+    /* =====================================================
+       DARK MODE
+    ===================================================== */
+
+    function toggleTheme() {
+
+      document
+        .body
+        .classList
+        .toggle("dark");
+
+
+      const icon =
+        document.querySelector("#themeBtn i");
+
+
+      if (
+        document
+          .body
+          .classList
+          .contains("dark")
+      ) {
+
+        icon.className =
+          "fa-solid fa-sun";
+
+        localStorage.setItem(
+          "theme",
+          "dark"
+        );
+
+      } else {
+
+        icon.className =
+          "fa-solid fa-moon";
+
+        localStorage.setItem(
+          "theme",
+          "light"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       LOAD THEME
+    ===================================================== */
+
+    if (
+      localStorage.getItem("theme") === "dark"
+    ) {
+
+      document
+        .body
+        .classList
+        .add("dark");
+
+
+      document
+        .querySelector("#themeBtn i")
+        .className =
+        "fa-solid fa-sun";
+
+    }
+
+
+    /* =====================================================
+       GENERATE KODE PENGADUAN
+    ===================================================== */
+
+    function generateKode() {
+
+      const now =
+        new Date();
+
+
+      const tanggal =
+        now.getFullYear() +
+        String(
+          now.getMonth() + 1
+        ).padStart(2, "0") +
+        String(
+          now.getDate()
+        ).padStart(2, "0");
+
+
+      const random =
+        Math.random()
+          .toString(36)
+          .substring(2, 8)
+          .toUpperCase();
+
+
+      return (
+        "PGD-" +
+        tanggal +
+        "-" +
+        random
+      );
+
+    }
+
+
+    /* =====================================================
+       FORM PENGADUAN
+    ===================================================== */
+
+    document
+      .getElementById("pengaduanForm")
+      .addEventListener(
+        "submit",
+        function(event) {
+
+          event.preventDefault();
+
+
+          const submitBtn =
+            document.getElementById(
+              "submitBtn"
+            );
+
+
+          const errorMessage =
+            document.getElementById(
+              "errorMessage"
+            );
+
+
+          errorMessage
+            .classList
+            .remove("show");
+
+
+          const nama =
+            document
+              .getElementById("nama")
+              .value
+              .trim();
+
+
+          const kontak =
+            document
+              .getElementById("kontak")
+              .value
+              .trim();
+
+
+          const kategori =
+            document
+              .getElementById("kategori")
+              .value;
+
+
+          const judul =
+            document
+              .getElementById("judul")
+              .value
+              .trim();
+
+
+          const isi =
+            document
+              .getElementById("isi")
+              .value
+              .trim();
+
+
+          const lokasi =
+            document
+              .getElementById("lokasi")
+              .value
+              .trim();
+
+
+          /*
+           * Generate kode di browser.
+           */
+
+          const kode =
+            generateKode();
+
+
+          /*
+           * Loading.
+           */
+
+          submitBtn.disabled =
+            true;
+
+
+          submitBtn.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+
+
+          /*
+           * Data ke Apps Script.
+           */
+
+          const formData =
+            new FormData();
+
+
+          formData.append(
+            "action",
+            "tambah"
+          );
+
+
+          /*
+           * KODE DIKIRIM KE BACKEND
+           */
+
+          formData.append(
+            "kode",
+            kode
+          );
+
+
+          formData.append(
+            "nama",
+            nama
+          );
+
+
+          formData.append(
+            "kontak",
+            kontak
+          );
+
+
+          formData.append(
+            "kategori",
+            kategori
+          );
+
+
+          formData.append(
+            "judul",
+            judul
+          );
+
+
+          formData.append(
+            "isi",
+            isi
+          );
+
+
+          formData.append(
+            "lokasi",
+            lokasi
+          );
+
+
+          /*
+           * Kirim ke Google Apps Script.
+           *
+           * no-cors digunakan agar GitHub Pages
+           * dapat mengirim POST ke Apps Script.
+           */
+
+          fetch(
+            API_URL,
+            {
+              method: "POST",
+              body: formData,
+              mode: "no-cors"
+            }
+          )
+          .then(
+            function() {
+
+              /*
+               * Tampilkan kode.
+               */
+
+              document
+                .getElementById(
+                  "kodeHasil"
+                )
+                .textContent =
+                kode;
+
+
+              document
+                .getElementById(
+                  "successModal"
+                )
+                .classList
+                .add("show");
+
+
+              document
+                .getElementById(
+                  "pengaduanForm"
+                )
+                .reset();
+
+
+              submitBtn.disabled =
+                false;
+
+
+              submitBtn.innerHTML =
+                '<i class="fa-solid fa-paper-plane"></i> Kirim Pengaduan';
+
+            }
+          )
+          .catch(
+            function(error) {
+
+              console.error(error);
+
+
+              errorMessage.textContent =
+                "Terjadi kesalahan saat mengirim pengaduan.";
+
+
+              errorMessage
+                .classList
+                .add("show");
+
+
+              submitBtn.disabled =
+                false;
+
+
+              submitBtn.innerHTML =
+                '<i class="fa-solid fa-paper-plane"></i> Kirim Pengaduan';
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       COPY KODE
+    ===================================================== */
+
+    function copyKode() {
+
+      const kode =
+        document
+          .getElementById(
+            "kodeHasil"
+          )
+          .textContent;
+
+
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+
+        navigator.clipboard
+          .writeText(kode)
+          .then(
+            function() {
+
+              showCopied();
+
+            }
+          );
+
+      } else {
+
+        const textarea =
+          document.createElement(
+            "textarea"
+          );
+
+        textarea.value =
+          kode;
+
+        document
+          .body
+          .appendChild(
+            textarea
+          );
+
+        textarea
+          .select();
+
+        document
+          .execCommand(
+            "copy"
+          );
+
+        textarea.remove();
+
+        showCopied();
+
+      }
+
+    }
+
+
+    function showCopied() {
+
+      const button =
+        document.querySelector(
+          ".copy-btn"
+        );
+
+
+      button.innerHTML =
+        '<i class="fa-solid fa-check"></i> Tersalin!';
+
+
+      setTimeout(
+        function() {
+
+          button.innerHTML =
+            '<i class="fa-solid fa-copy"></i> Salin Kode';
+
+        },
+        2000
+      );
+
+    }
+
+
+    /* =====================================================
+       CLOSE MODAL
+    ===================================================== */
+
+    function closeModal() {
+
+      document
+        .getElementById(
+          "successModal"
+        )
+        .classList
+        .remove("show");
+
+    }
+
+
+    /* =====================================================
+       CEK STATUS
+    ===================================================== */
+
+    document
+      .getElementById("statusForm")
+      .addEventListener(
+        "submit",
+        function(event) {
+
+          event.preventDefault();
+
+
+          const kode =
+            document
+              .getElementById(
+                "kodeCek"
+              )
+              .value
+              .trim();
+
+
+          if (!kode) {
+            return;
+          }
+
+
+          const checkBtn =
+            document
+              .getElementById(
+                "checkBtn"
+              );
+
+
+          checkBtn.disabled =
+            true;
+
+
+          checkBtn.textContent =
+            "Mengecek...";
+
+
+          /*
+           * Nama callback unik.
+           */
+
+          const callbackName =
+            "callback_" +
+            Date.now();
+
+
+          /*
+           * Callback JSONP.
+           */
+
+          window[callbackName] =
+            function(response) {
+
+              checkBtn.disabled =
+                false;
+
+
+              checkBtn.textContent =
+                "Cek Status";
+
+
+              /*
+               * Jika gagal.
+               */
+
+              if (
+                !response ||
+                !response.success
+              ) {
+
+                alert(
+                  response &&
+                  response.message
+                    ? response.message
+                    : "Pengaduan tidak ditemukan."
+                );
+
+
+                cleanupJSONP(
+                  callbackName
+                );
+
+
+                return;
+
+              }
+
+
+              /*
+               * Data pengaduan.
+               */
+
+              const data =
+                response.data;
+
+
+              document
+                .getElementById(
+                  "resultKode"
+                )
+                .textContent =
+                data.kode || "-";
+
+
+              document
+                .getElementById(
+                  "resultKategori"
+                )
+                .textContent =
+                data.kategori || "-";
+
+
+              document
+                .getElementById(
+                  "resultJudul"
+                )
+                .textContent =
+                data.judul || "-";
+
+
+              document
+                .getElementById(
+                  "resultLokasi"
+                )
+                .textContent =
+                data.lokasi || "-";
+
+
+              /*
+               * Status.
+               */
+
+              const statusElement =
+                document.getElementById(
+                  "resultStatus"
+                );
+
+
+              const status =
+                String(
+                  data.status || "baru"
+                )
+                .toLowerCase();
+
+
+              statusElement.innerHTML =
+                `
+                <span class="status-badge status-${status}">
+                  ${escapeHTML(status)}
+                </span>
+                `;
+
+
+              /*
+               * Tanggapan.
+               */
+
+              document
+                .getElementById(
+                  "resultTanggapan"
+                )
+                .textContent =
+                data.tanggapan ||
+                "Belum ada tanggapan.";
+
+
+              /*
+               * Tanggal.
+               */
+
+              document
+                .getElementById(
+                  "resultTanggal"
+                )
+                .textContent =
+                data.tanggal ||
+                "-";
+
+
+              /*
+               * Tampilkan hasil.
+               */
+
+              document
+                .getElementById(
+                  "resultBox"
+                )
+                .classList
+                .add("show");
+
+
+              cleanupJSONP(
+                callbackName
+              );
+
+            };
+
+
+          /*
+           * Buat script JSONP.
+           */
+
+          const script =
+            document.createElement(
+              "script"
+            );
+
+
+          script.id =
+            callbackName;
+
+
+          script.src =
+            API_URL +
+            "?action=cek" +
+            "&kode=" +
+            encodeURIComponent(kode) +
+            "&callback=" +
+            callbackName;
+
+
+          script.onerror =
+            function() {
+
+              checkBtn.disabled =
+                false;
+
+
+              checkBtn.textContent =
+                "Cek Status";
+
+
+              alert(
+                "Gagal terhubung ke server."
+              );
+
+
+              cleanupJSONP(
+                callbackName
+              );
+
+            };
+
+
+          document
+            .body
+            .appendChild(
+              script
+            );
+
+        }
+      );
+
+
+    /* =====================================================
+       CLEANUP JSONP
+    ===================================================== */
+
+    function cleanupJSONP(
+      callbackName
+    ) {
+
+      const script =
+        document.getElementById(
+          callbackName
+        );
+
+
+      if (script) {
+        script.remove();
+      }
+
+
+      delete window[
+        callbackName
+      ];
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+  </script>
+
+</body>
+</html>
